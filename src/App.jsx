@@ -5,15 +5,14 @@ import Feedback from "./components/Feedback/Feedback";
 import Notification from "./components/Notification/Notification";
 
 function App() {
-  const [options, setOptions] = useState(() => {
-    const savedOptions = window.localStorage.getItem("saved-feedbacks");
-
-    if (savedOptions?.length) {
-      return JSON.parse(savedOptions);
-    }
-
-    return { good: 0, neutral: 0, bad: 0 };
-  });
+  const [options, setOptions] = useState(
+    () =>
+      JSON.parse(localStorage.getItem("saved-feedbacks")) ?? {
+        good: 0,
+        neutral: 0,
+        bad: 0,
+      }
+  );
 
   const updateFeedback = (feedbackType) => {
     setOptions((prevOptions) => ({
