@@ -8,7 +8,7 @@ function App() {
   const [options, setOptions] = useState(() => {
     const savedOptions = window.localStorage.getItem("saved-feedbacks");
 
-    if (savedOptions !== null) {
+    if (savedOptions?.length) {
       return JSON.parse(savedOptions);
     }
 
