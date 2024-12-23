@@ -4,13 +4,17 @@ import Options from "./components/Options/Options";
 import Feedback from "./components/Feedback/Feedback";
 import Notification from "./components/Notification/Notification";
 
+const INITIAL_FEEDBACKS = {
+  good: 0,
+  neutral: 0,
+  bad: 0,
+};
+
 function App() {
   const [options, setOptions] = useState(
     () =>
       JSON.parse(localStorage.getItem("saved-feedbacks")) ?? {
-        good: 0,
-        neutral: 0,
-        bad: 0,
+        INITIAL_FEEDBACKS,
       }
   );
 
@@ -22,11 +26,7 @@ function App() {
   };
 
   const resetAll = () => {
-    setOptions({
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    });
+    setOptions(INITIAL_FEEDBACKS);
   };
 
   const totalFeedback = options.good + options.neutral + options.bad;
